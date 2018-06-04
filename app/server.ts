@@ -21,8 +21,6 @@ const app = createExpressServer({
 
 
 
-
-
 // Serve the application at the given port
 app.listen(port, () => {
     // Success callback
