@@ -5,15 +5,23 @@ import express = require('express');
 
 // Import WelcomeController from controllers entry point
 import {WelcomeController} from './controllers';
+import "reflect-metadata"; // this shim is required
+import {createExpressServer} from "routing-controllers";
+import {UserController} from "./controllers/UserController";
 
-// Create a new express application instance
-const app: express.Application = express();
 // The port the express app will listen on
 const port: any = process.env.PORT || 3000;
 
+/**
+ * Initialize Express App
+ */
+const app = createExpressServer({
+   controllers: [UserController] // we specify controllers we want to use
+});
 
-// Mount the WelcomeController at the /welcome route
-app.use('/welcome', WelcomeController);
+
+
+
 
 // Serve the application at the given port
 app.listen(port, () => {
